@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex">
+<title>TikTok Authorization — YOLOs SNS Insights</title>
+<style>body{font-family:-apple-system,Segoe UI,sans-serif;max-width:680px;margin:60px auto;padding:0 20px;line-height:1.7;color:#222}
+.box{background:#f5f6fa;border-radius:12px;padding:18px;word-break:break-all;font-family:monospace;font-size:14px}
+h1{font-size:22px}</style></head>
+<body>
+<h1>TikTok Authorization Complete</h1>
+<p id="msg">Checking authorization result…</p>
+<div class="box" id="out"></div>
+<p>You can close this window. / このウィンドウは閉じて大丈夫です。</p>
+<script>
+const p = new URLSearchParams(location.search);
+const code = p.get("code"), err = p.get("error");
+if (code) {
+  document.getElementById("msg").textContent = "Authorization succeeded. Code (for YOLOs staff):";
+  document.getElementById("out").textContent = code;
+} else if (err) {
+  document.getElementById("msg").textContent = "Authorization failed: " + err;
+  document.getElementById("out").textContent = p.get("error_description") || "";
+} else {
+  document.getElementById("msg").textContent = "No authorization parameters found.";
+}
+</script>
+</body></html>
